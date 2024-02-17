@@ -1,8 +1,21 @@
 #! /bin/env bash
 
-if [[ $# != 1 ]]; then
+if [ $# -gt 1 ]; then
 	echo "Usage: see [PATH|FILE]"
 	exit 1
+fi
+
+if [[ $# == 1 ]]; then
+	if [[ $1 == "-h" ]]; then
+		echo "Usage: see [PATH|FILE]"
+		exit 0
+	fi
+fi
+
+if [[ $# == 0 ]]; then
+	file_or_dir="."
+else
+	file_or_dir=$1
 fi
 
 CAT() {
@@ -38,7 +51,7 @@ command -v bat >>/dev/null
 bat_presence=$?
 
 if [ -d $1 ]; then
-	LS $1 $eza_presence
+	LS $file_or_dir $eza_presence
 else
-	CAT $1 $bat_presence
+	CAT $file_or_dir $bat_presence
 fi
