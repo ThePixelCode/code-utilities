@@ -25,7 +25,7 @@ CAT() {
 	fi
 
 	if [[ $2 == 0 ]]; then
-		/usr/bin/bat --color=always -n $1 | less
+		/usr/bin/bat --color=always $1 | less
 	else
 		/usr/bin/cat -sn $1 | less
 	fi
